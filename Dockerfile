@@ -6,9 +6,9 @@ WORKDIR /var/www/html
 
 USER root
 COPY . .
-COPY composer*.json ./
+#COPY composer*.json ./
 
-COPY env .env
+#COPY env .env
 #RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 #RUN composer install 
 
