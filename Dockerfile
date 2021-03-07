@@ -43,6 +43,6 @@ RUN sed -i -e 's/\/var\/www\/html/\/var\/www\/html\/public/g' /usr/local/docker/
 
 #RUN script/run.sh
 
-User user
+#User user
 
 
