@@ -213,6 +213,37 @@
          
           
         }
+
+         function showForm(id) {
+            save_method = 'show';
+            
+            $('input[name=_method]').val('PATCH');
+            $('#modal-form-template-show form')[0].reset();
+            
+            
+            $.ajax({
+              url: "{{ url('manajemen-template') }}" + '/' + id + "/show",
+              type: "GET",
+              dataType: "JSON",
+              success: function (data) {
+                  $('#modal-form-template-show').modal('show');
+                  $('.modal-title').text('Show Data');
+
+                  $('#modal-form-template-show form #id').val(data.id).attr('disabled', 'true');
+                  $('#modal-form-template-show form #id-instansi').val(data.tipe_instansi.name).attr('disabled', 'true');
+                  $('#modal-form-template-show form #id-jenis-sk').val(data.tipe_jenissk.name).attr('disabled', 'true');
+                  $('#modal-form-template-show form div #file a').attr('href', 'upload/documents/'+ data.file).text(data.file);
+                  // $('#modal-form-template-show form div #file').prepend('<a id="file-data" target="_blank" href="' + 'upload/documents/'+ data.file + '">'+ data.file +'</a>');
+                  
+              },
+
+              error : function () {
+                alert("Nothing Data");
+              }
+
+            });
+        }
+
   </script>
 
 @endpush

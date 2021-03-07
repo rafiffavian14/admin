@@ -391,3 +391,50 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="modal-form-template-show" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                {{ csrf_field() }} {{ method_field('POST') }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                    <h3 class="modal-title"></h3>
+                </div>
+
+
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="daftar_layanan" class="col-md-3 control-label">Jenis Instansi</label>
+                        <div class="col-md-6">
+                            <input type="text" id="id-instansi" name="id-instansi" class="form-control" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for=prosedur class="col-md-3 control-label">Jenis SK</label>
+                      <div class="col-md-6">
+                            <input type="text" id="id-jenis-sk" name="id-instansi" class="form-control" required>
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="photo" class="col-md-3 control-label">File</label>
+                      <div id="file" class="col-md-6">
+                          <a id="file-data" target="_blank" href=""></a>
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </div>
+    </div>
+</div>

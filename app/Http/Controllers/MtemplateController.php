@@ -96,6 +96,18 @@ class MtemplateController extends Controller
         return $tipe_jenis_sk;
     }
 
+    public function show($id)
+    {
+        $template = Manajemen_template::find($id);
+        $tipe_instansi = $template->tipeInstansi;
+        $tipe_jenis_sk = $template->tipeJenissk;
+
+
+        return $template;
+        return $tipe_instansi;
+        return $tipe_jenis_sk;
+    }
+
     public function apiTemplate()
     {
         $layanan = Manajemen_template::query();
@@ -112,7 +124,7 @@ class MtemplateController extends Controller
             })
 
             ->addColumn('action', function ($layanan) {
-                return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> ' .
+                return '<a onclick="showForm(' . $layanan->id . ')" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> ' .
                     '<a onclick="editForm(' . $layanan->id . ')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                     '<a onclick="deleteData(' . $layanan->id . ')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })->addIndexColumn()->rawColumns(['show_file', 'action'])->make(true);

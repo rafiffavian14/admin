@@ -71,6 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('api/manajemen-template', [MtemplateController::class, 'apiTemplate'])->name('api.template');
 
     Route::delete('manajemen-template/{id}', [MtemplateController::class, 'delete'])->name('template.delete');
+
+    Route::get('manajemen-template/{id}/show', [MtemplateController::class, 'show'])->name('template.show');
     
 
 
