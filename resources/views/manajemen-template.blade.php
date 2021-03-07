@@ -45,8 +45,8 @@
                         ajax: "{{ route('api.template') }}",
                         columns: [
                             {data: 'DT_RowIndex', name: 'id'},
-                            {data: 'tipe_instansi.name', name: 'id_instansi'},
-                            {data: 'tipe_jenissk.name', name: 'id_jenis_sk'},
+                            {data: 'tipe_instansi.name', name: 'id_instansi', searchable: true},
+                            {data: 'tipe_jenissk.name', name: 'id_jenis_sk', searchable: true},
                             {data: 'show_file', name: 'show_file'},
                             {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
@@ -59,6 +59,7 @@
             $('#modal-form-template').modal('show');
             $('#modal-form-template form')[0].reset();
             $('.modal-title').text('Add Manajemen Template');
+            
           }
 
 
@@ -68,7 +69,6 @@
               if(!e.isDefaultPrevented()){
                 var id = $('#id').val();
                 if (save_method == 'add') url = "{{ url('manajemen-template/store') }}";
-                else url = "{{ url('contact') . '/' }}" + id;
 
                 $.ajax({
                   url : url,
@@ -102,6 +102,117 @@
             });
 
           });
+
+           function editForm(id) {
+            save_method = "edit";
+            id = id;
+            
+            $('input[name=_method]').val('PATCH');
+            $('#modal-form-template-edit form')[0].reset();
+            $.ajax({
+              url: "{{ url('manajemen-template') }}" + '/' + id + "/edit",
+              type: "GET",
+              data: id,
+              dataType: "JSON",
+              success: function (data) {
+                  $('#modal-form-template-edit').modal('show');
+                  $('.modal-title').text('Edit Data');
+
+                  $('#id').val(data.id);
+
+                  $('#id-instansi').val(data.tipe_instansi.id).text(data.tipe_instansi.name);
+                  $('#id-jenis-sk').val(data.tipe_jenissk.id).text(data.tipe_jenissk.name);
+
+              },
+
+              error : function () {
+                alert("Nothing Data");
+              }
+
+            });
+        }
+
+        $(function(){
+            $('#modal-form-template-edit form').validator().on('submit', function(e) {
+              if(!e.isDefaultPrevented()){
+                var id = $('#id').val();
+                if (save_method == 'edit') url = "{{ url('manajemen-template') . '/' }}" + id;
+                
+
+                $.ajax({
+                  url : url,
+                  type: 'POST',
+                  // data: $('#modal-form-template-edit form').serialize(),
+                  data : new FormData($('#modal-form-template-edit form')[0]),
+                  contentType: false,
+                  processData: false,
+                  success: function ($data) {
+                    $('#modal-form-template-edit').modal('hide');
+                    table.ajax.reload();
+                    swal({
+                      title: 'Success!',
+                      text: 'Data has been Created!',
+                      type: 'success',
+                      timer: '1500'
+                    })
+                  },
+                  error: function () {
+                    swal({
+                        title: 'Oops...',
+                        text: 'Something Went Wrong!',
+                        type: 'error',
+                        timer: '1500'
+                    })
+                  }
+                });
+
+                return false;
+              }
+            });
+
+          });
+
+        function deleteData(id) {
+          
+          var csrf_token = $('meta[name="csrf-token"]').attr('content');
+          swal({
+            title: 'Are You Sure?',
+            text: "You Wont be able to Revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+          }).then( function () {
+
+              $.ajax({
+                url: "{{ url('manajemen-template') }}" + '/' + id,
+                type: "POST",
+                data: {'_method': 'DELETE', '_token' : csrf_token},
+                success: function (data) {
+                  table.ajax.reload();
+                  swal({
+                      title: 'Success',
+                      text: 'Data has been deleted!',
+                      type: 'success',
+                      timer: '1500'
+                  })
+                  // console.log(data);
+                },
+                error: function () {
+                  swal({
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    type: 'error',
+                    timer: '1500'
+                  });
+                }
+              });
+
+          });
+         
+          
+        }
   </script>
 
 @endpush

@@ -24,15 +24,17 @@ class MtemplateController extends Controller
 
     public function store(Request $request)
     {
-
-    	$file =  $request->file('file');
-        $fileNameArr = explode('.',$file->getClientOriginalName());
-        $fileName = $fileNameArr[0] . '-' . time() . '.' . $fileNameArr[1];
-        $file->move('upload/documents', $fileName);
-
         $input = $request->all();
+        $input['file'] = null;
 
-        $input['file'] = $fileName;
+    if ($request->hasFile('file')) {
+        	$file =  $request->file('file');
+            $fileNameArr = explode('.',$file->getClientOriginalName());
+            $fileName = $fileNameArr[0] . '-' . time() . '.' . $fileNameArr[1];
+            $input['file'] = $fileName;
+            $request->file->move(public_path('/upload/documents'), $input['file']);
+
+        }
         
 
         Manajemen_template::create($input);
@@ -45,23 +47,53 @@ class MtemplateController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $layanan = Manajemen_template::findOrFail($id);
+        $template = Manajemen_template::findOrFail($id);
 
-        $input['gambar'] = $layanan->gambar;
+        $input['file'] = $template->file;
 
-        if ($request->hasFile('gambar')) {
-            if ($layanan->gambar != null) {
-                unlink(public_path($layanan->gambar));
+        if ($request->hasFile('file')) {
+            if ($template->file != null) {
+                unlink(public_path('upload/documents/'. $template->file));
             }
-            $input['gambar'] = '/upload/gambar/' . Str::slug($input['name'], '-') . '.' . $request->gambar->getClientOriginalExtension();
-            $request->gambar->move(public_path('/upload/gambar'), $input['gambar']);
+
+            $file =  $request->file('file');
+            $fileNameArr = explode('.',$file->getClientOriginalName());
+            $fileName = $fileNameArr[0] . '-' . time() . '.' . $fileNameArr[1];
+            $file->move('upload/documents', $fileName);
+
+            $input['file'] = $fileName;
+
         }
 
-        $layanan->update($input);
+        $template->update($input);
 
         return response()->json([
             'success' => true
         ]);
+    }
+
+    public function delete($id)
+    {
+        $template = Manajemen_template::findOrFail($id);
+
+        if ($template->file != null) {
+
+            unlink(public_path($template->file));
+        }
+
+        Manajemen_template::destroy($id);
+    }
+
+    public function edit($id)
+    {
+        $template = Manajemen_template::find($id);
+        $tipe_instansi = $template->tipeInstansi;
+        $tipe_jenis_sk = $template->tipeJenissk;
+
+
+        return $template;
+        return $tipe_instansi;
+        return $tipe_jenis_sk;
     }
 
     public function apiTemplate()

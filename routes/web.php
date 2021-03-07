@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
+
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.index');
 
@@ -27,6 +27,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.ind
 // });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('index');
 
 
     Route::get('manajemen-layanan', [MlayananController::class, 'index'])->name('layanan.index');
@@ -47,17 +49,28 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('manajemen-tte/store', [MtteController::class, 'store'])->name('tte.store');
 
-    Route::put('manajemen-tte/{id}', [MtteController::class, 'update'])->name('tte.update');
+    Route::patch('manajemen-tte/{id}', [MtteController::class, 'update'])->name('tte.update');
+
+    Route::get('manajemen-tte/{id}/edit', [MtteController::class, 'edit'])->name('tte.edit');
+
+    Route::delete('manajemen-tte/{id}', [MtteController::class, 'delete'])->name('tte.delete');
+
+    Route::get('manajemen-tte/{id}/show', [MtteController::class, 'show'])->name('tte.show');
 
     Route::get('api/manajemen-tte', [MtteController::class, 'apiTte'])->name('api.tte');
+
 
     Route::get('manajemen-template', [MtemplateController::class, 'index'])->name('template.index');
 
     Route::post('manajemen-template/store', [MtemplateController::class, 'store'])->name('template.store');
 
-    Route::put('manajemen-template/{id}', [MtemplateController::class, 'update'])->name('template.update');
+    Route::get('manajemen-template/{id}/edit', [MtemplateController::class, 'edit'])->name('template.edit');
+
+    Route::patch('manajemen-template/{id}', [MtemplateController::class, 'update'])->name('template.update');
 
     Route::get('api/manajemen-template', [MtemplateController::class, 'apiTemplate'])->name('api.template');
+
+    Route::delete('manajemen-template/{id}', [MtemplateController::class, 'delete'])->name('template.delete');
     
 
 

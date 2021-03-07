@@ -15,9 +15,10 @@ class MtteController extends Controller
     {
         $instansi = Instansi::all();
         $jenis_sk = Jenis_sk::all();
+
     	return view('manajemen-tte', [
                 'instansi' => $instansi,
-                 'jenis_sk' => $jenis_sk
+                'jenis_sk' => $jenis_sk
             ]);
     }
 
@@ -32,12 +33,44 @@ class MtteController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $tte = Manajemen_tte::findorFail($id);
+        return $tte;
+    }
+
+    public function show($id)
+    {
+        $tte = Manajemen_tte::findorFail($id);
+
+        return $tte;
+    }
+
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $tte = Manajemen_tte::findOrFail($id);
+        // $input = $request->all();
+        // $tte = Manajemen_tte::findOrFail($id);
 
-        $tte->update($input);
+        // $tte->update($input);
+
+        Manajemen_tte::where('id', $id)->update([
+
+            'posisi'   => $request->posisi,
+            'spesimen' => $request->spesimen,
+            'nik'      => $request->nik,
+            'nama'     => $request->nama,
+            'nip'      => $request->nip,
+
+        ]);
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function delete($id)
+    {
+        Manajemen_tte::destroy($id);
 
         return response()->json([
             'success' => true
@@ -52,7 +85,7 @@ class MtteController extends Controller
 
 
             ->addColumn('action', function ($tte) {
-                return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> ' .
+                return '<a onclick="showForm(' . $tte->id . ')" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> ' .
                     '<a onclick="editForm(' . $tte->id . ')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                     '<a onclick="deleteData(' . $tte->id . ')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })->addIndexColumn()->rawColumns(['action'])->make(true);
