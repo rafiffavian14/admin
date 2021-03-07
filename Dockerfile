@@ -34,10 +34,10 @@ RUN mkdir -p /var/www/html/bootstrap/cache/ \
 
 RUN sed -i -e 's/\/var\/www\/html/\/var\/www\/html\/public/g' /usr/local/docker/etc/nginx/sites-available/default
 
-#RUN composer install
+RUN composer install
 #RUN ls -alh
 
-#RUN chmod 775 -R vendor
+RUN chmod 775 -R vendor
 
 #RUN  cp script/migration.conf /usr/local/docker/etc/supervisor/conf.d/03-laravel.conf && chmod -R 775 script
 
