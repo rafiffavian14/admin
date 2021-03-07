@@ -27,7 +27,7 @@ RUN mkdir -p /var/www/html/bootstrap/cache/ \
 	/var/www/html/storage/framework/views \
 	/var/www/html/storage/framework/cache \
 	&& chmod -R 775 /var/www/html/storage/ 
-//	&& chown -R user /var/www/html
+#	&& chown -R user /var/www/html
 
 #RUN  sed -i 's|/var/www/html|/var/www/html/public|g' \
  #       '/usr/local/docker/etc/nginx/sites-available/default' \
