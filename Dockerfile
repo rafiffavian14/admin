@@ -35,6 +35,7 @@ RUN mkdir -p /var/www/html/bootstrap/cache/ \
 RUN sed -i -e 's/\/var\/www\/html/\/var\/www\/html\/public/g' /usr/local/docker/etc/nginx/sites-available/default
 
 RUN composer install
+RUN composer update
 #RUN ls -alh
 
 
