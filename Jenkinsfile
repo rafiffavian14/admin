@@ -2,7 +2,7 @@ pipeline {
     parameters {
         string(name: 'PRODUCTION_NAMESPACE',       description: 'Production Namespace',                 defaultValue: 'siasn')
 
-        string(name: 'DEVELOPMENT_NAMESPACE',      description: 'Development Namespace',                defaultValue: 'siasn')
+        string(name: 'DEVELOPMENT_NAMESPACE',      description: 'Development Namespace',                defaultValue: 'siasn-training')
 
         string(name: 'DOCKER_IMAGE_NAME',          description: 'Docker Image Name',                    defaultValue: 'admin-siasn')
     }
