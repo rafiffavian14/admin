@@ -75,7 +75,11 @@ pipeline {
             steps {
                 
                 script{
-                    
+                
+                    sh "composer install"
+                    sh "chmod 775  -Rf vendor"
+                    sh "chmod 777 -Rf storage/ && chmod 777 -Rf storage/logs"
+
                     sh "docker build --rm --no-cache --pull -t ${params.DOCKER_IMAGE_NAME}:${BUILD_NUMBER}-${commitId} ."
                     
                 }
