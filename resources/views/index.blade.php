@@ -107,7 +107,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-						<a href="http://siasn-instansi.bkn.go.id/">
+						<a href="http://iam-siasn.bkn.go.id/">
                         <img src="{{ asset('admin-master/images/UM.png')}}" class="width-100" alt="pic">
 
                         <h3>USER MANAGEMENT</h3>
@@ -181,7 +181,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-						<a href="http://dashboard-kebijakan-siasn.bkn.go.id/">
+						<a href="http://metadata-siasn.bkn.go.id/">
                         <img src="{{ asset('admin-master/images/MR.png')}}" class="width-100" alt="pic">
 
                         <h3>METADATA REPOSITORY</h3>
