@@ -6,6 +6,7 @@ use App\Http\Controllers\MlayananController;
 use App\Http\Controllers\MtemplateController;
 use App\Http\Controllers\MtteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MpertekController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('manajemen-template/{id}', [MtemplateController::class, 'delete'])->name('template.delete');
 
     Route::get('manajemen-template/{id}/show', [MtemplateController::class, 'show'])->name('template.show');
+
+    Route::get('manajemen-pertek', [MpertekController::class, 'index'])->name('pertek.index');
+
+    Route::post('manajemen-pertek/store', [MpertekController::class, 'store'])->name('pertek.store');
+
+    Route::get('manajemen-pertek/{id}/edit', [MpertekController::class, 'edit'])->name('pertek.edit');
+
+    Route::patch('manajemen-pertek/{id}', [MpertekController::class, 'update'])->name('pertek.update');
+
+    Route::get('api/manajemen-pertek', [MpertekController::class, 'apiPertek'])->name('api.pertek');
     
 
 

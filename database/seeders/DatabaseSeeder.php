@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\Manajemen_layanan::factory(100)->create();
-        $this->call(InstansiSeeder::class);
-        $this->call(JenisSkSeeder::class);
+        // $this->call(InstansiSeeder::class);
+        // $this->call(JenisSkSeeder::class);
+        $this->call(JenisPertekSeeder::class);
     }
 }

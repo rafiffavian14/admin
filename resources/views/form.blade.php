@@ -169,6 +169,77 @@
     </div>
 </div>
 
+<div class="modal" id="modal-form-pertek" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                {{ csrf_field() }} {{ method_field('POST') }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                    <h3 class="modal-title"></h3>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="id_jenis_pertek" class="col-md-3 control-label">Jenis Pertek</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="id_jenis_pertek" id="id_jenis_pertek">
+                              @foreach ($jenis_pertek as $jp)    
+                                <option value="{{ $jp->id }}">{{ $jp->name }}</option>
+                              @endforeach  
+                            </select>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="deskripsi" class="col-md-3 control-label">Deskripsi</label>
+                      <div class="col-md-6">
+                          
+                          <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="jrxml" class="col-md-3 control-label">Upload Jrxml</label>
+                      <div class="col-md-6">
+                          <input type="file" id="jrxml" name="jrxml" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="json" class="col-md-3 control-label">Upload Json</label>
+                      <div class="col-md-6">
+                          <input type="file" id="json" name="json" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tanggal_versi" class="col-md-3 control-label">Tanggal Versi</label>
+                      <div class="col-md-6">
+                          <input type="date" id="tanggal_versi" name="tanggal_versi" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-save">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal" id="modal-form-detail" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -380,6 +451,80 @@
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-save">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="modal-form-pertek-edit" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                {{ csrf_field() }} {{ method_field('POST') }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                    <h3 class="modal-title"></h3>
+                </div>
+
+
+                <div class="modal-body">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="id_jenis_pertek" class="col-md-3 control-label">Jenis Pertek</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="id_jenis_pertek" id="id_jenis_pertek">
+                              <option id="id-pertek"></option>
+                              @foreach ($jenis_pertek as $jp)    
+                                <option value="{{ $jp->id }}">{{ $jp->name }}</option>
+                              @endforeach  
+                            </select>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="deskripsi" class="col-md-3 control-label">Deskripsi</label>
+                      <div class="col-md-6">
+                          
+                          <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="jrxml" class="col-md-3 control-label">Upload Jrxml</label>
+                      <div class="col-md-6">
+                          <input type="file" id="jrxml" name="jrxml" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="json" class="col-md-3 control-label">Upload Json</label>
+                      <div class="col-md-6">
+                          <input type="file" id="json" name="json" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="tanggal_versi" class="col-md-3 control-label">Tanggal Versi</label>
+                      <div class="col-md-6">
+                          <input type="date" id="tanggal_versi" name="tanggal_versi" class="form-control">
+                          <span class="help-block with-errors"></span>
+                      </div>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">

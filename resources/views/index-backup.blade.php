@@ -25,16 +25,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('admin-master/css/pe-icon-7-stroke.css')}}">
 
-    <!-- Optional - Adds useful class to manipulate icon font display -->
-    <link rel="stylesheet" href="{{ asset('admin-master/css/helper.css')}}">
+	<!-- Optional - Adds useful class to manipulate icon font display -->
+	<link rel="stylesheet" href="{{ asset('admin-master/css/helper.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('admin-master/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('admin-master/css/owl.theme.default.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('admin-master/css/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('admin-master/css/owl.theme.default.min.css')}}">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    
+	
     <!-- Font Favicon -->
     <!-- <link rel="shortcut icon" href="{{ asset('admin-master/images/SIASN-BKN.png')}}"> -->
     
@@ -54,7 +54,7 @@
 
     <!--begin home section -->
     
-     <!-- Fixed navbar -->
+	 <!-- Fixed navbar -->
       <nav class="navbar navbar-default">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -87,16 +87,16 @@
     <!--begin section-grey -->
     <section class="section-grey small-padding-top" id="about">
 
-        <!--begin container -->
-        <div class="container">
+		<!--begin container -->
+		<div class="container">
 
-            <!--begin row -->
-            <div class="row">
+	        <!--begin row -->
+	        <div class="row">
 
-                <!--begin col-md-12 -->
-                <div class="col-md-12 text-center">
+				<!--begin col-md-12 -->
+				<div class="col-md-12 text-center">
 
-                    <h2 class="section-title">LAYANAN ADMINISTRASI SIASN</h2>
+					<h2 class="section-title">LAYANAN ADMINISTRASI SIASN</h2>
 
                     <p class="section-subtitle"></p>
                     
@@ -107,7 +107,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="http://siasn-instansi.bkn.go.id/">
+						<a href="http://siasn-instansi.bkn.go.id/">
                         <img src="{{ asset('admin-master/images/UM.png')}}" class="width-100" alt="pic">
 
                         <h3>USER MANAGEMENT</h3>
@@ -123,7 +123,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="{{ route('layanan.index') }}">
+						<a href="{{ route('layanan.index') }}">
                         <img src="{{ asset('admin-master/images/ml.png')}}" class="width-100" alt="pic">
 
                         <h3>MANAJEMEN LAYANAN</h3>
@@ -139,7 +139,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="{{ route('tte.index') }}">
+						<a href="{{ route('tte.index') }}">
                         <img src="{{ asset('admin-master/images/DS.png')}}" class="width-100" alt="pic">
 
                         <h3>MANAJEMEN TTE</h3>
@@ -165,7 +165,7 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="{{ route('template.index') }}">
+						<a href="{{ route('template.index') }}">
                         <img src="{{ asset('admin-master/images/dm.png')}}" class="width-100" alt="pic">
 
                         <h3>MANAJEMEN SK</h3>
@@ -181,10 +181,10 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="{{ route('pertek.index') }}">
-                        <img src="{{ asset('admin-master/images/SD.png')}}" class="width-100" alt="pic">
+						<a href="http://dashboard-kebijakan-siasn.bkn.go.id/">
+                        <img src="{{ asset('admin-master/images/MR.png')}}" class="width-100" alt="pic">
 
-                        <h3>MANAJEMEN PERTEK</h3>
+                        <h3>METADATA REPOSITORY</h3>
 
                         <p></p>
                         </a>
@@ -197,10 +197,10 @@
                 <div class="col-md-4">
 
                     <div class="main-services">
-                        <a href="http://dashboard-kebijakan-siasn.bkn.go.id/">
-                        <img src="{{ asset('admin-master/images/MR.png')}}" class="width-100" alt="pic">
+						<a href="http://directory-siasn.bkn.go.id/">
+                        <img src="{{ asset('admin-master/images/SD.png')}}" class="width-100" alt="pic">
 
-                        <h3>METADATA REPOSITORY</h3>
+                        <h3>SERVICE REPOSITORY</h3>
 
                         <p></p>
                         </a>
