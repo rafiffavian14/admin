@@ -177,6 +177,85 @@
 
           });
 
+         function deleteData(id) {
+          
+          var csrf_token = $('meta[name="csrf-token"]').attr('content');
+          swal({
+            title: 'Are You Sure?',
+            text: "You Wont be able to Revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+          }).then( function () {
+
+              $.ajax({
+                url: "{{ url('manajemen-pertek') }}" + '/' + id,
+                type: "POST",
+                data: {'_method': 'DELETE', '_token' : csrf_token},
+                success: function (data) {
+                  table.ajax.reload();
+                  swal({
+                      title: 'Success',
+                      text: 'Data has been deleted!',
+                      type: 'success',
+                      timer: '1500'
+                  })
+                  // console.log(data);
+                },
+                error: function () {
+                  swal({
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    type: 'error',
+                    timer: '1500'
+                  });
+                }
+              });
+
+          });
+         
+          
+        }
+
+        function showForm(id) {
+            save_method = 'show';
+            
+            $('input[name=_method]').val('PATCH');
+            $('#modal-form-pertek-show form')[0].reset();
+            
+            
+            $.ajax({
+              url: "{{ url('manajemen-pertek') }}" + '/' + id + "/show",
+              type: "GET",
+              dataType: "JSON",
+              success: function (data) {
+                  $('#modal-form-pertek-show').modal('show');
+                  $('.modal-title').text('Show Data');
+
+                  $('#modal-form-pertek-show form #id').val(data.id).attr('disabled', 'true');
+
+                  $('#modal-form-pertek-show form #id-pertek').val(data.tipe_pertek.name).attr('disabled', 'true');
+
+                  $('#modal-form-pertek-show form #deskripsi').val(data.deskripsi).attr('disabled', 'true');
+                  
+                  $('#modal-form-pertek-show form div #jrxml a').attr('href', 'upload/jrxml/'+ data.jrxml).text(data.jrxml);
+
+                  $('#modal-form-pertek-show form div #json a').attr('href', 'upload/json/'+ data.json).text(data.json);
+
+                  $('#modal-form-pertek-show form #tanggal_versi').val(data.tanggal_versi).attr('disabled', 'true');
+                  // $('#modal-form-template-show form div #file').prepend('<a id="file-data" target="_blank" href="' + 'upload/documents/'+ data.file + '">'+ data.file +'</a>');
+                  
+              },
+
+              error : function () {
+                alert("Nothing Data");
+              }
+
+            });
+        }
+
   </script>
 
 @endpush

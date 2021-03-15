@@ -105,14 +105,19 @@ class MpertekController extends Controller
 
     public function delete($id)
     {
-        $template = Manajemen_template::findOrFail($id);
+        $pertek = Manajemen_pertek::findOrFail($id);
 
-        if ($template->file != null) {
+        if ($pertek->jrxml != null) {
 
-            unlink(public_path($template->file));
+            unlink(public_path('upload/jrxml/' . $pertek->jrxml));
         }
 
-        Manajemen_template::destroy($id);
+        if ($pertek->json != null) {
+
+        	unlink(public_path('upload/json/' . $pertek->json));
+        }
+
+        Manajemen_pertek::destroy($id);
     }
 
     public function edit($id)
@@ -127,14 +132,11 @@ class MpertekController extends Controller
 
     public function show($id)
     {
-        $template = Manajemen_template::find($id);
-        $tipe_instansi = $template->tipeInstansi;
-        $tipe_jenis_sk = $template->tipeJenissk;
+        $pertek = Manajemen_pertek::find($id);
+        $jenis_pertek = $pertek->tipePertek;
 
-
-        return $template;
-        return $tipe_instansi;
-        return $tipe_jenis_sk;
+        return $pertek;
+        return $jenis_pertek;
     }
 
     public function apiPertek()

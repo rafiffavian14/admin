@@ -84,7 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('manajemen-pertek/{id}', [MpertekController::class, 'update'])->name('pertek.update');
 
     Route::get('api/manajemen-pertek', [MpertekController::class, 'apiPertek'])->name('api.pertek');
+
+    Route::delete('manajemen-pertek/{id}', [MpertekController::class, 'delete'])->name('pertek.delete');
     
+    Route::get('manajemen-pertek/{id}/show', [MpertekController::class, 'show'])->name('pertek.show');
 
 
 
