@@ -9,6 +9,7 @@ use App\Models\Jenis_sk;
 use Yajra\DataTables\datatables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\Jenis_pertek;
 
 class MtemplateController extends Controller
 {
@@ -16,9 +17,11 @@ class MtemplateController extends Controller
     {
     	$instansi = Instansi::all();
     	$jenis_sk = Jenis_sk::all();
+        $jenis_pertek = Jenis_pertek::all();
     	return view('manajemen-template', [
 	    		'instansi' => $instansi,
-	    		 'jenis_sk' => $jenis_sk
+	    		 'jenis_sk' => $jenis_sk,
+                 'jenis_pertek' => $jenis_pertek,
     		]);
     }
 

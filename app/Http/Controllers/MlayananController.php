@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Manajemen_layanan;
+use App\Models\Jenis_pertek;
 use Yajra\DataTables\datatables;
 use Illuminate\Support\Str;
 use App\Models\Instansi;
@@ -15,9 +16,12 @@ class MlayananController extends Controller
     {
         $instansi = Instansi::all();
         $jenis_sk = Jenis_sk::all();
+        $jenis_pertek = Jenis_pertek::all();
     	return view('manajemen-layanan', [
                 'instansi' => $instansi,
-                 'jenis_sk' => $jenis_sk
+                 'jenis_sk' => $jenis_sk,
+                 'jenis_pertek' => $jenis_pertek,
+                 
             ]);
     }
 

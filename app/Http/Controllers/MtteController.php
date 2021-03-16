@@ -8,6 +8,7 @@ use Yajra\DataTables\datatables;
 use Illuminate\Support\Str;
 use App\Models\Instansi;
 use App\Models\Jenis_sk;
+use App\Models\Jenis_pertek;
 
 class MtteController extends Controller
 {
@@ -15,10 +16,12 @@ class MtteController extends Controller
     {
         $instansi = Instansi::all();
         $jenis_sk = Jenis_sk::all();
+        $jenis_pertek = Jenis_pertek::all();
 
     	return view('manajemen-tte', [
                 'instansi' => $instansi,
-                'jenis_sk' => $jenis_sk
+                'jenis_sk' => $jenis_sk,
+                'jenis_pertek' => $jenis_pertek,
             ]);
     }
 
