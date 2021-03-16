@@ -2,7 +2,7 @@ pipeline {
     parameters {
         string(name: 'PRODUCTION_NAMESPACE',       description: 'Production Namespace',                 defaultValue: 'siasn')
 
-        string(name: 'DEVELOPMENT_NAMESPACE',      description: 'Development Namespace',                defaultValue: 'siasn')
+        string(name: 'DEVELOPMENT_NAMESPACE',      description: 'Development Namespace',                defaultValue: 'siasn-training')
 
         string(name: 'DOCKER_IMAGE_NAME',          description: 'Docker Image Name',                    defaultValue: 'admin-siasn')
     }
@@ -75,7 +75,11 @@ pipeline {
             steps {
                 
                 script{
-                    
+                
+                    sh "composer install"
+                    sh "chmod 775  -Rf vendor"
+                    sh "chmod 777 -Rf storage/ && chmod 777 -Rf storage/logs"
+
                     sh "docker build --rm --no-cache --pull -t ${params.DOCKER_IMAGE_NAME}:${BUILD_NUMBER}-${commitId} ."
                     
                 }

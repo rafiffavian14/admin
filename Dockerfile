@@ -6,9 +6,9 @@ WORKDIR /var/www/html
 
 USER root
 COPY . .
-#COPY composer*.json ./
+COPY composer*.json ./
 
-#COPY env .env
+COPY env .env
 #RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 #RUN composer install 
 
@@ -26,23 +26,21 @@ RUN mkdir -p /var/www/html/bootstrap/cache/ \
 	/var/www/html/storage/framework/sessions \
 	/var/www/html/storage/framework/views \
 	/var/www/html/storage/framework/cache \
-	&& chmod -R 775 /var/www/html/storage/ \
-	&& chown -R user /var/www/html
+	&& chmod -R 775 /var/www/html/storage/  
 
 #RUN  sed -i 's|/var/www/html|/var/www/html/public|g' \
  #       '/usr/local/docker/etc/nginx/sites-available/default' \
 
 RUN sed -i -e 's/\/var\/www\/html/\/var\/www\/html\/public/g' /usr/local/docker/etc/nginx/sites-available/default
 
-#RUN composer install
-#RUN ls -alh
+RUN composer install
+RUN ls -alh
 
-#RUN chmod 775 -R vendor
+RUN chmod 775 -R vendor
 
-#RUN  cp script/migration.conf /usr/local/docker/etc/supervisor/conf.d/03-laravel.conf && chmod -R 775 script
+RUN  cp script/migration.conf /usr/local/docker/etc/supervisor/conf.d/03-laravel.conf && chmod -R 775 script
 
-#RUN script/run.sh
+RUN script/run.sh
 
 User user
-
 
