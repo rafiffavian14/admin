@@ -118,6 +118,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::delete('role-mapping/{id}', [RoleMController::class, 'destroy'])->name('mapping.destroy');
 
+   
+
     // Route::get('logout', [OtentikasiController::class, 'logout'])->name('logout.crud');
 });
 

@@ -311,11 +311,11 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="detail">
                                 <div style="padding-top:50px">
-                                    <input type="hidden" id="id" name="id">
+
                                     <div class="form-group">
                                         <label for="id" class="col-md-3 control-label">ID</label>
                                         <div class="col-md-6">
-                                            <input type="text" id="id" name="id" class="form-control" disabled>
+                                            <input type="text" id="id" name="id" class="form-control" readonly>
                                             <span class="help-block with-errors"></span>
                                         </div>
                                     </div>
@@ -324,7 +324,7 @@
                                         <label for="username" class="col-md-3 control-label">Username</label>
                                         <div class="col-md-6">
                                             <input type="text" id="username" name="username" class="form-control"
-                                                disabled>
+                                                readonly>
                                             <span class="help-block with-errors"></span>
                                         </div>
                                     </div>
@@ -338,26 +338,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="first-name" class="col-md-3 control-label">First Name</label>
+                                        <label for="first_name" class="col-md-3 control-label">First Name</label>
                                         <div class="col-md-6">
-                                            <input type="text" id="first-name" name="first-name" class="form-control"
+                                            <input type="text" id="first_name" name="first_name" class="form-control"
                                                 required>
                                             <span class="help-block with-errors"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
+                                        <label for="last_name" class="col-md-3 control-label">Last Name</label>
                                         <div class="col-md-6">
-                                            <input type="text" id="last-name" name="last-name" class="form-control"
-                                                required>
-                                            <span class="help-block with-errors"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
-                                        <div class="col-md-6">
-                                            <input type="text" id="last-name" name="last-name" class="form-control"
+                                            <input type="text" id="last_name" name="last_name" class="form-control"
                                                 required>
                                             <span class="help-block with-errors"></span>
                                         </div>
@@ -382,11 +373,23 @@
                                         <div class="col-md-3">
                                             <label for="exampleFormControlSelect2">Available Role</label>
                                             <select multiple class="form-control" id="exampleFormControlSelect2">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>role:siasn-bkn:perencanaan:TT-Renpegfor</option>
+                                                <option>role:siasn-bkn:perencanaan:PP-Renpegfor</option>
+                                                <option>role:siasn-bkn:perencanaan:PP-TTE-Renpegfor</option>
+                                                <option>role:siasn-bkn:perencanaan:PP-TTE-BKN</option>
+                                                <option>role:siasn-bkn:perencanaan:DK</option>
+                                                <option>role:siasn-bkn:perencanaan:Menpan</option>
+                                                <option>role:siasn-bkn:pengadaan:TT-BKN</option>
+                                                <option>role:siasn-bkn:pengadaan:TT-Kanreg</option>
+                                                <option>role:siasn-bkn:pengadaan:PP-BKN</option>
+                                                <option>role:siasn-bkn:pengadaan:PP-TTE-BKN</option>
+                                                <option>role:siasn-bkn:kp:TT-BKN</option>
+                                                <option>role:siasn-bkn:kp:TT-Kanreg</option>
+                                                <option>role:siasn-bkn:kp:PP-BKN</option>
+                                                <option>role:siasn-bkn:kp:PP-TTE-BKN</option>
+                                                <option>role:siasn-bkn:kp:Setneg</option>
+                                                <option>role:siasn-bkn:pemberhentian:TT-BKN</option>
+
                                             </select>
                                             <button type="button" class="btn btn-default">Add
                                                 Selected>></button>
@@ -394,11 +397,8 @@
                                         <div class="col-md-3">
                                             <label for="exampleFormControlSelect2">Assigned Role</label>
                                             <select multiple class="form-control" id="exampleFormControlSelect2">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>role:siasn-bkn:perencanaan:TT-Renpegfor</option>
+                                                <option>role:siasn-bkn:perencanaan:PP-Renpegfor</option>
                                             </select>
                                             <button type="button" class="btn btn-default">Remove
                                                 Selected</button>
@@ -407,13 +407,16 @@
                                             <label for="exampleFormControlSelect2">Effectived Role</label>
                                             <select multiple class="form-control" id="exampleFormControlSelect2"
                                                 disabled>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>role:siasn-bkn:perencanaan:TT-Renpegfor</option>
+                                                <option>role:siasn-bkn:perencanaan:PP-Renpegfor</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group mr-3">
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-default">Flush Role</button>
+                                        </div>
+
                                     </div>
                                 </div>
 
