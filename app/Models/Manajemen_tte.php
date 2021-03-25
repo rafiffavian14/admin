@@ -11,5 +11,16 @@ class Manajemen_tte extends Model
     
     protected $table = "manajemen_tte";
 
-    protected $fillable = ['posisi', 'spesimen', 'nik', 'nama', 'nip'];
+    protected $fillable = ['posisi',
+     					   'spesimen',
+     					   'nik',
+     					   'nama',
+     					   'nip',
+     					   'paraf_pi',
+     					   'paraf_kp',
+     					   'paraf_peremajaan',
+     					   'ttd_pi',
+     					   'ttd_kp',
+     					   'ttd_peremajaan'
+     					];
 }

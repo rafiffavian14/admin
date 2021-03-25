@@ -113,7 +113,7 @@ class MlayananController extends Controller
                 if ($layanan->photo == null) {
                     return 'No Image';
                 }
-                return '<img class="rounded-square" width="50" height="50" src="' . url($layanan->photo) . '" alt="">';
+                return '<a target="_blank" href="' . url($layanan->photo) . '"><img class="rounded-square" width="50" height="50" src="' . url($layanan->photo) . '" alt=""></a>';
             })
 
             ->addColumn('action', function ($layanan) {

@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('manajemen-tte/store', [MtteController::class, 'store'])->name('tte.store');
 
-    Route::patch('manajemen-tte/{id}', [MtteController::class, 'update'])->name('tte.update');
+    Route::patch('manajemen-tte/{id}/update', [MtteController::class, 'update'])->name('tte.update');
 
     Route::get('manajemen-tte/{id}/edit', [MtteController::class, 'edit'])->name('tte.edit');
 

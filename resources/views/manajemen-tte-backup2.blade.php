@@ -59,18 +59,66 @@
                             {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
           });
-  </script>
 
 
-  <script type="text/javascript">
-      
-     
-          
-            function editForm(id) {
+      function addForm() {
+            save_method = "add";
+            $('input[name=_method]').val('POST');
+            $('#modal-form-tte').modal('show');
+            $('#modal-form-tte form')[0].reset();
+            $('.modal-title').text('Add Manajemen TTE');
+          }
+
+
+
+          // $(function(){
+          //   $('#modal-form-tte form').validator().on('submit', function(e) {
+          //     if(!e.isDefaultPrevented()){
+          //       var id = $('#id').val();
+          //       if (save_method == 'add') url = "{{ url('manajemen-tte/store') }}";
+
+          //       $.ajax({
+          //         url : url,
+          //         type: 'POST',
+          //         // data: $('#modal-form-tte form').serialize(),
+          //         data : new FormData($('#modal-form-tte form')[0]),
+          //         contentType: false,
+          //         processData: false,
+          //         success: function ($data) {
+
+          //           $('#modal-form-tte').modal('hide');
+          //           table.ajax.reload();
+          //           swal({
+          //             title: 'Success!',
+          //             text: 'Data has been Created!',
+          //             type: 'success',
+          //             timer: '1500'
+          //           })
+
+          //         },
+          //         error: function () {
+          //           swal({
+          //               title: 'Oops...',
+          //               text: 'Something Went Wrong!',
+          //               type: 'error',
+          //               timer: '1500'
+          //           })
+          //         }
+          //       });
+
+          //       return false;
+          //     }
+          //   });
+
+          // });
+
+
+
+          function editForm(id) {
+            save_method = "edit";
+            id = id;
             
-            var id = id;
-            
-            // $('input[name=_method]').val('PATCH');
+            $('input[name=_method]').val('PATCH');
             $('#modal-form-tte-edit form')[0].reset();
             $.ajax({
               url: "{{ url('manajemen-tte') }}" + '/' + id + "/edit",
@@ -144,169 +192,104 @@
               }
 
             });
-        } 
-     
-      
-      
+        }
 
-          $('#modal-form-tte-edit form').on('submit', function(e) {
-              
-              e.preventDefault();
+        // $('#edit-form-tte').on('submit', function(e){
 
-              var id = $('#modal-form-tte-edit form #id').val();
+        //     e.preventDefault();
+        //     var id = $('#id').val();
 
-              $.ajax({
+        //     $.ajax({
 
-                  type : "PATCH",
-                  url  : "{{ url('manajemen-tte/2/update') }}",
-                  data : $('#modal-form-tte-edit form').serialize(),
-                  success : function ($data) {
-                      console.log($data);
-                      $('#modal-form-tte-edit').modal('hide');
-                      alert("Data Updated");
-                      location.reload();
-                  },
-                  error: function (error) {
-                    console.log(error);
-                  } 
+        //       type: "PATCH",
+        //       url : "{{ route('tte.update', "id") }}",
+        //       data: $('#edit-form-tte').serialize(),
+        //       contentType: false,
+        //           processData: false,
+        //           success: function ($data) {
+        //             $('#edit-form-tte').modal('hide');
+        //             table.ajax.reload();
+        //             swal({
+        //               title: 'Success!',
+        //               text: 'Data has been Created!',
+        //               type: 'success',
+        //               timer: '1500'
+        //             })
+        //           },
+        //            error: function () {
+        //             swal({
+        //                 title: 'Oops...',
+        //                 text: 'Something Went Wrong!',
+        //                 type: 'error',
+        //                 timer: '1500'
+        //             })
+        //           }
+        //     });
+        // });
 
-              });
-          });
-      
-   
-
-  </script>
-
-  <script type="text/javascript">
-    
-    
-        function addForm() {
-
-            save_method = "add";
-            $('#modal-form-tte').modal('show');
-            $('#form-tte')[0].reset();
-            $('.modal-title').text('Add Manajemen TTE');
-          }
-
-    
-
-  </script>
-
-  <script type="text/javascript">
-    
-      $(document).ready(function(){
-          
-          $('#form-tte').on('submit', function(e){
-              e.preventDefault();
-
-              $.ajax({
-
+         $(function(){
+            $('#edit-form-tte').validator().on('submit', function(e) {
+              if(!e.isDefaultPrevented()){
+                var id = $('#id').val();
+                if (save_method == 'edit') url = "{{ url('manajemen-tte') . '/' }}" + id;
+            
+                $.ajax({
+                  url : url,
                   type: "POST",
-                  url: "{{route('tte.store')}}",
-                  data: $('#form-tte').serialize(),
-                  success: function (response) {
-                      console.log(response)
-                      $('#modal-form-tte').modal('hide')
-                      table.ajax.reload();
-                      swal({
-                        title: 'Success!',
-                        text: 'Data has been Created!',
-                        type: 'success',
-                        timer: '1500'
-                      })
+                  // data: $('#edit-form-tte').serialize(),
+                  data : new FormData($('#edit-form-tte')[0]),
+                  contentType: false,
+                  processData: false,
+                  success: function ($data) {
+                    $('#modal-form-tte-edit').modal('hide');
+                    table.ajax.reload();
+                    swal({
+                      title: 'Success!',
+                      text: 'Data has been Created!',
+                      type: 'success',
+                      timer: '1500'
+                    })
                   },
-
-                  error: function (error) {
-                      // console.log(error)
-                      // alert("Data Not Saved");
-                      swal({
+                  error: function () {
+                    swal({
                         title: 'Oops...',
                         text: 'Something Went Wrong!',
                         type: 'error',
                         timer: '1500'
                     })
                   }
+                });
 
-              });
+                return false;
+              }
+            });
+
           });
-      });
 
-  </script>
+         
 
-  <script type="text/javascript">
-      
-      
         function showForm(id) {
+            save_method = 'show';
             
-            var id = id;
-            
-            // $('input[name=_method]').val('PATCH');
-            $('#modal-form-tte-show form')[0].reset();
+            $('input[name=_method]').val('PATCH');
+            $('#modal-form-tte-detail form')[0].reset();
             $.ajax({
               url: "{{ url('manajemen-tte') }}" + '/' + id + "/show",
               type: "GET",
               dataType: "JSON",
               success: function (data) {
-                  $('#modal-form-tte-show').modal('show');
+                  $('#modal-form-tte-detail').modal('show');
                   $('.modal-title').text('Show Data');
 
-                  $('#modal-form-tte-show form #id').val(data.id).attr('disabled', 'true');
-                  $('#modal-form-tte-show form #posisi').val(data.posisi).attr('disabled', 'true');
-                  $('#modal-form-tte-show form #spesimen').val(data.spesimen).attr('disabled', 'true');
-                  $('#modal-form-tte-show form #nik').val(data.nik).attr('disabled', 'true');
-                  $('#modal-form-tte-show form #nama').val(data.nama).attr('disabled', 'true');
-                  $('#modal-form-tte-show form #nip').val(data.nip).attr('disabled', 'true');
+                  $('#modal-form-tte-detail form #id').val(data.id).attr('disabled', 'true');
+                  $('#modal-form-tte-detail form #posisi').val(data.posisi).attr('disabled', 'true');
+                  $('#modal-form-tte-detail form #spesimen').val(data.spesimen).attr('disabled', 'true');
+                 $('#modal-form-tte-detail form #nik').val(data.nik).attr('disabled', 'true');
+                 $('#modal-form-tte-detail form #nama').val(data.nama).attr('disabled', 'true');
+                 $('#modal-form-tte-detail form #nip').val(data.nip).attr('disabled', 'true');
+                  
 
-                if(data.paraf_pi == 1){
-
-                  $('#modal-form-tte-show form #paraf_pi').prop('checked', true).val(data.paraf_pi).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #paraf_pi').prop('checked', false).val(data.paraf_pi).attr('disabled', 'true');
-                }
-
-                if(data.paraf_kp == 1){
-
-                  $('#modal-form-tte-show form #paraf_kp').prop('checked', true).val(data.paraf_kp).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #paraf_kp').prop('checked', false).val(data.paraf_kp).attr('disabled', 'true');
-                }
-
-                if(data.paraf_peremajaan == 1){
-
-                  $('#modal-form-tte-show form #paraf_peremajaan').prop('checked', true).val(data.paraf_peremajaan).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #paraf_peremajaan').prop('checked', false).val(data.paraf_peremajaan).attr('disabled', 'true');
-                }
-
-                if(data.ttd_pi == 1){
-
-                  $('#modal-form-tte-show form #ttd_pi').prop('checked', true).val(data.ttd_pi).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #ttd_pi').prop('checked', false).val(data.ttd_pi).attr('disabled', 'true');
-                }
-
-                if(data.ttd_kp == 1){
-
-                  $('#modal-form-tte-show form #ttd_kp').prop('checked', true).val(data.ttd_kp).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #ttd_kp').prop('checked', false).val(data.ttd_kp).attr('disabled', 'true');
-                }
-
-                if(data.ttd_peremajaan == 1){
-
-                  $('#modal-form-tte-show form #ttd_peremajaan').prop('checked', true).val(data.ttd_peremajaan).attr('disabled', 'true');
-                }  else {
-
-                  $('#modal-form-tte-show form #ttd_peremajaan').prop('checked', false).val(data.ttd_peremajaan).attr('disabled', 'true');
-                }
-
-
-
+                  
               },
 
               error : function () {
@@ -314,8 +297,7 @@
               }
 
             });
-        } 
-
+        }
 
         function deleteData(id) {
           
@@ -358,8 +340,6 @@
          
           
         }
-     
-      
 
   </script>
 @endpush  

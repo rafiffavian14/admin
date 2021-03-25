@@ -50,8 +50,8 @@
 <div class="modal" id="modal-form-tte" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="form-tte" class="form-horizontal" data-toggle="validator">
-                {{ csrf_field() }}
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator">
+                {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"> &times; </span>
@@ -60,11 +60,11 @@
                 </div>
 
                 <div class="modal-body">
-                    
+                    <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="posisi" class="col-md-3 control-label">Posisi</label>
                         <div class="col-md-6">
-                            <input type="text" name="posisi" class="form-control" autofocus required>
+                            <input type="text" id="posisi" name="posisi" class="form-control" autofocus required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="form-group">
                       <label for="spesimen" class="col-md-3 control-label">Spesimen</label>
                       <div class="col-md-6">
-                          <input type="text" name="spesimen" class="form-control" required>
+                          <input type="spesimen" id="spesimen" name="spesimen" class="form-control" required>
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="form-group">
                       <label for="nik" class="col-md-3 control-label">NIK</label>
                       <div class="col-md-6">
-                          <input type="text" name="nik" class="form-control" required>
+                          <input type="nik" id="nik" name="nik" class="form-control" required>
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>                    
@@ -88,7 +88,7 @@
                     <div class="form-group">
                       <label for="nama" class="col-md-3 control-label">Nama</label>
                       <div class="col-md-6">
-                          <input type="text" name="nama" class="form-control" required>
+                          <input type="nama" id="nama" name="nama" class="form-control" required>
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>                    
@@ -96,7 +96,7 @@
                     <div class="form-group">
                       <label for="nip" class="col-md-3 control-label">NIP</label>
                       <div class="col-md-6">
-                          <input type="text" name="nip" class="form-control" required>
+                          <input type="nip" id="nip" name="nip" class="form-control" required>
                           <span class="help-block with-errors"></span>
                       </div>
                     </div>                    
@@ -104,9 +104,9 @@
                     <div class="form-group">
                       <label for="nip" class="col-md-3 control-label">PARAF</label>
                       <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="paraf_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="paraf_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="paraf_peremajaan" type="checkbox" value="1">Peremajaan</label>
+                          <label class="checkbox-inline"><input name="paraf_pi" id="paraf_pi" type="checkbox" value="1">PI</label>
+                          <label class="checkbox-inline"><input name="paraf_kp" id="paraf_kp" type="checkbox" value="1">KP</label>
+                          <label class="checkbox-inline"><input name="paraf_peremajaan" id="paraf_peremajaan" type="checkbox" value="1">Peremajaan</label>
 
                       </div>
                     </div>  
@@ -114,9 +114,9 @@
                     <div class="form-group">
                       <label for="nip" class="col-md-3 control-label">TTD</label>
                       <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="ttd_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="ttd_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="ttd_peremajaan" type="checkbox" value="1">Peremajaan</label>
+                          <label class="checkbox-inline"><input name="ttd_pi" id="ttd_pi" type="checkbox" value="1">PI</label>
+                          <label class="checkbox-inline"><input name="ttd_kp" id="ttd_kp" type="checkbox" value="1">KP</label>
+                          <label class="checkbox-inline"><input name="ttd_peremajaan" id="ttd_peremajaan" type="checkbox" value="1">Peremajaan</label>
 
                       </div>
                     </div>                                      
@@ -137,9 +137,8 @@
 <div class="modal" id="modal-form-tte-edit" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="form-tte-edit" class="form-horizontal" data-toggle="validator">
-                {{ csrf_field() }}
-                {{ method_field('PATCH') }}
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator">
+                {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"> &times; </span>
@@ -148,7 +147,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="posisi" class="col-md-3 control-label">Posisi</label>
                         <div class="col-md-6">
@@ -221,92 +220,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal" id="modal-form-tte-show" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form id="form-tte-show" class="form-horizontal" data-toggle="validator">
-                {{ csrf_field() }}
-                {{ method_field('PATCH') }}
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"> &times; </span>
-                    </button>
-                    <h3 class="modal-title">Show Data</h3>
-                </div>
-
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="form-group">
-                        <label for="posisi" class="col-md-3 control-label">Posisi</label>
-                        <div class="col-md-6">
-                            <input type="text" id="posisi" name="posisi" class="form-control" autofocus required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="spesimen" class="col-md-3 control-label">Spesimen</label>
-                      <div class="col-md-6">
-                          <input type="text" id="spesimen" name="spesimen" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="nik" class="col-md-3 control-label">NIK</label>
-                      <div class="col-md-6">
-                          <input type="text" id="nik" name="nik" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nama" class="col-md-3 control-label">Nama</label>
-                      <div class="col-md-6">
-                          <input type="text" id="nama" name="nama" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">NIP</label>
-                      <div class="col-md-6">
-                          <input type="text" id="nip" name="nip" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">PARAF</label>
-                      <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="paraf_pi" id="paraf_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="paraf_kp" id="paraf_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="paraf_peremajaan" id="paraf_peremajaan" type="checkbox" value="1">Peremajaan</label>
-
-                      </div>
-                    </div>  
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">TTD</label>
-                      <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="ttd_pi" id="ttd_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="ttd_kp" id="ttd_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="ttd_peremajaan" id="ttd_peremajaan" type="checkbox" value="1">Peremajaan</label>
-
-                      </div>
-                    </div>                                      
-
-
-                </div>
-
-                
-
-            </form>
-        </div>
-    </div>
-</div>
-
 
 <div class="modal" id="modal-form-template" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
@@ -481,7 +394,7 @@
     </div>
 </div>
 
-<!-- <div class="modal" id="modal-form-tte-detail" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+<div class="modal" id="modal-form-tte-detail" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator">
@@ -540,7 +453,7 @@
             </form>
         </div>
     </div>
-</div> -->
+</div>
 
 <div class="modal" id="modal-form-template-detail" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
@@ -843,89 +756,3 @@
         </div>
     </div>
 </div>
-
-<!-- <div class="modal" id="modal-form-tte-edit" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form id="edit-form-tte" method="post" class="form-horizontal" data-toggle="validator">
-                {{ csrf_field() }} {{ method_field('PATCH') }}
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"> &times; </span>
-                    </button>
-                    <h3 class="modal-title"></h3>
-                </div>
-
-                <div class="modal-body">
-                    <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                        <label for="posisi" class="col-md-3 control-label">Posisi</label>
-                        <div class="col-md-6">
-                            <input type="text" id="posisi" name="posisi" class="form-control" autofocus required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="spesimen" class="col-md-3 control-label">Spesimen</label>
-                      <div class="col-md-6">
-                          <input type="spesimen" id="spesimen" name="spesimen" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="nik" class="col-md-3 control-label">NIK</label>
-                      <div class="col-md-6">
-                          <input type="nik" id="nik" name="nik" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nama" class="col-md-3 control-label">Nama</label>
-                      <div class="col-md-6">
-                          <input type="nama" id="nama" name="nama" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">NIP</label>
-                      <div class="col-md-6">
-                          <input type="nip" id="nip" name="nip" class="form-control" required>
-                          <span class="help-block with-errors"></span>
-                      </div>
-                    </div>                    
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">PARAF</label>
-                      <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="paraf_pi" id="paraf_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="paraf_kp" id="paraf_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="paraf_peremajaan" id="paraf_peremajaan" type="checkbox" value="1">Peremajaan</label>
-
-                      </div>
-                    </div>  
-
-                    <div class="form-group">
-                      <label for="nip" class="col-md-3 control-label">TTD</label>
-                      <div class="col-md-6">
-                          <label class="checkbox-inline"><input name="ttd_pi" id="ttd_pi" type="checkbox" value="1">PI</label>
-                          <label class="checkbox-inline"><input name="ttd_kp" id="ttd_kp" type="checkbox" value="1">KP</label>
-                          <label class="checkbox-inline"><input name="ttd_peremajaan" id="ttd_peremajaan" type="checkbox" value="1">Peremajaan</label>
-
-                      </div>
-                    </div>                                      
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-save">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div> -->

@@ -19,27 +19,62 @@ class MtteController extends Controller
         $jenis_pertek = Jenis_pertek::all();
 
     	return view('manajemen-tte', [
-                'instansi' => $instansi,
-                'jenis_sk' => $jenis_sk,
+                'instansi'     => $instansi,
+                'jenis_sk'     => $jenis_sk,
                 'jenis_pertek' => $jenis_pertek,
             ]);
     }
 
     public function store(Request $request)
     {
-        $input = $request->all();
-        
-        Manajemen_tte::create($input);
+        // $input = $request->all();
 
-        return response()->json([
-            'success' => true
-        ]);
+        // Manajemen_tte::create($input);
+
+        // return response()->json([
+        //     'success' => true
+        // ]);
+
+        $tte = new Manajemen_tte;
+
+        $tte->posisi = $request->input('posisi');
+        $tte->spesimen = $request->input('spesimen');
+        $tte->nik = $request->input('nik');
+        $tte->nama = $request->input('nama');
+        $tte->nip = $request->input('nip');
+
+        $tte->paraf_pi = $request->input('paraf_pi') ?? 0;
+        $tte->paraf_kp = $request->input('paraf_kp') ?? 0;
+        $tte->paraf_peremajaan = $request->input('paraf_peremajaan') ?? 0;
+
+        $tte->ttd_pi = $request->input('ttd_pi') ?? 0;
+        $tte->ttd_kp = $request->input('ttd_kp') ?? 0;
+        $tte->ttd_peremajaan = $request->input('ttd_peremajaan') ?? 0;
+
+        $tte->save();
     }
 
     public function edit($id)
     {
         $tte = Manajemen_tte::findorFail($id);
+
+        $paraf_pi         = $tte->paraf_pi;
+        $paraf_kp         = $tte->paraf_kp;
+        $paraf_peremajaan = $tte->paraf_peremajaan;
+
+        $ttd_pi         = $tte->ttd_pi;
+        $ttd_kp         = $tte->ttd_kp;
+        $ttd_peremajaan = $tte->ttd_peremajaan;
+
+
         return $tte;
+
+        // return view('form', [
+
+        //     'paraf_pi'         => $paraf_pi,
+        //     'paraf_kp'         => $paraf_kp,
+        //     'paraf_peremajaan' => $paraf_peremajaan,
+        // ]);
     }
 
     public function show($id)
@@ -49,22 +84,54 @@ class MtteController extends Controller
         return $tte;
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id=2)
     {
         // $input = $request->all();
         // $tte = Manajemen_tte::findOrFail($id);
 
         // $tte->update($input);
 
-        Manajemen_tte::where('id', $id)->update([
+        // Manajemen_tte::where('id', $id)->update([
 
-            'posisi'   => $request->posisi,
-            'spesimen' => $request->spesimen,
-            'nik'      => $request->nik,
-            'nama'     => $request->nama,
-            'nip'      => $request->nip,
+        //     'posisi'                => $request->posisi,
+        //     'spesimen'              => $request->spesimen,
+        //     'nik'                   => $request->nik,
+        //     'nama'                  => $request->nama,
+        //     'nip'                   => $request->nip,
+        //     'paraf_pi'              => $request->paraf_pi,
+        //     'paraf_kp'              => $request->paraf_kp,
+        //     'paraf_peremajaan'      => $request->paraf_peremajaan,
+        //     'ttd_pi'                => $request->ttd_pi,
+        //     'ttd_kp'                => $request->ttd_kp,
+        //     'ttd_peremajaan'        => $request->ttd_peremajaan,
 
-        ]);
+        // ]);
+
+        // $input = $request->all();
+
+        // $manajemen_tte = Manajemen_tte::findOrFail($id);
+
+        // $manajemen_tte->update($input);
+
+        $tte = Manajemen_tte::find($id);
+
+        $tte->posisi = $request->input('posisi');
+        $tte->spesimen = $request->input('spesimen');
+        $tte->nik = $request->input('nik');
+        $tte->nama = $request->input('nama');
+        $tte->nip = $request->input('nip');
+
+        $tte->paraf_pi = $request->input('paraf_pi') ?? 0;
+        $tte->paraf_kp = $request->input('paraf_kp') ?? 0;
+        $tte->paraf_peremajaan = $request->input('paraf_peremajaan') ?? 0;
+
+        $tte->ttd_pi = $request->input('ttd_pi') ?? 0;
+        $tte->ttd_kp = $request->input('ttd_kp') ?? 0;
+        $tte->ttd_peremajaan = $request->input('ttd_peremajaan') ?? 0;
+
+        $tte->save();
+
+        // return $tte;
 
         return response()->json([
             'success' => true

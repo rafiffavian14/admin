@@ -20,6 +20,12 @@ class CreateManajemenTteTable extends Migration
             $table->string('nik')->nullable();
             $table->string('nama')->nullable();
             $table->string('nip')->nullable();
+            $table->integer('paraf_pi')->default(0);
+            $table->integer('paraf_kp')->default(0);
+            $table->integer('paraf_peremajaan')->default(0);
+            $table->integer('ttd_pi')->default(0);
+            $table->integer('ttd_kp')->default(0);
+            $table->integer('ttd_peremajaan')->default(0);
             $table->timestamps();
         });
     }
