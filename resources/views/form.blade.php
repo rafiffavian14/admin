@@ -285,6 +285,8 @@
 <div class="modal" id="modal-form-mapping-edit" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
+
             <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator">
                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
@@ -295,6 +297,19 @@
                 </div>
 
                 <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation"><a href="#home">Home</a></li>
+                        <li role="presentation"><a href="#profile">Profile</a></li>
+                        <li role="presentation"><a href="#messages">Messages</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane" id="home">Selamat datang</div>
+                        <!-- Untuk Tab pertama berikan div class=”active” agar pertama kali halaman di load content langsung active-->
+                        <div class="tab-pane active" id="profile">Profil saya</div>
+                        <div class="tab-pane" id="messages">Sangat Mudah membuat Tap dengan Bootstrap</div>
+                    </div>
+
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="id" class="col-md-3 control-label">ID</label>
