@@ -7,6 +7,9 @@ use App\Http\Controllers\MtemplateController;
 use App\Http\Controllers\MtteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MpertekController;
+use App\Http\Controllers\UManagementController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RoleMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +93,30 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('manajemen-pertek/{id}/show', [MpertekController::class, 'show'])->name('pertek.show');
 
 
+    // Menu User Management
+    Route::get('user-management', [UManagementController::class, 'index'])->name('user.index');
+
+    
+    Route::get('role', [RoleController::class, 'index'])->name('role.index');
+
+    Route::post('role/store', [RoleController::class, 'store'])->name('role.store');
+
+    Route::patch('role/{id}', [RoleController::class, 'update'])->name('role.update');
+
+    Route::get('role/{id}/edit', [RoleController::class, 'edit'])->name('role.edit');
+
+    Route::delete('role/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
+    
+
+    Route::get('role-mapping', [RoleMController::class, 'index'])->name('mapping.index');
+
+    Route::post('role-mapping/store', [RoleMController::class, 'store'])->name('mapping.store');
+
+    Route::patch('role-mapping/{id}', [RoleMController::class, 'update'])->name('mapping.update');
+
+    Route::get('role-mapping/{id}/edit', [RoleMController::class, 'edit'])->name('mapping.edit');
+
+    Route::delete('role-mapping/{id}', [RoleMController::class, 'destroy'])->name('mapping.destroy');
 
     // Route::get('logout', [OtentikasiController::class, 'logout'])->name('logout.crud');
 });

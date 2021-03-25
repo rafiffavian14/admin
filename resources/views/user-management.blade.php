@@ -93,7 +93,7 @@
     <section class="section-grey small-padding-top" id="about">
 
         <!--begin container -->
-        <div class="container">
+        <div class="container" style="padding-bottom:150px;">
 
             <!--begin row -->
             <div class="row">
@@ -101,7 +101,7 @@
                 <!--begin col-md-12 -->
                 <div class="col-md-12 text-center">
 
-                    <h2 class="section-title">LAYANAN ADMINISTRASI SIASN</h2>
+                    <h2 class="section-title">USER MANAGEMENT</h2>
 
                     <p class="section-subtitle"></p>
 
@@ -109,13 +109,13 @@
                 <!--end col-md-12 -->
 
                 <!--begin col-md-4 -->
-                <div class="col-md-4">
+                <div class="col-md-6">
 
                     <div class="main-services">
-                        <a href="{{ route('user.index') }}">
+                        <a href="{{ route('role.index') }}">
                             <img src="{{ asset('admin-master/images/UM.png')}}" class="width-100" alt="pic">
 
-                            <h3>USER MANAGEMENT</h3>
+                            <h3>ROLE</h3>
 
                             <p></p>
                         </a>
@@ -125,13 +125,13 @@
                 <!--end col-md-4 -->
 
                 <!--begin col-md-4 -->
-                <div class="col-md-4">
+                <div class="col-md-6">
 
                     <div class="main-services">
-                        <a href="{{ route('layanan.index') }}">
+                        <a href="{{ route('mapping.index') }}">
                             <img src="{{ asset('admin-master/images/ml.png')}}" class="width-100" alt="pic">
 
-                            <h3>MANAJEMEN LAYANAN</h3>
+                            <h3>ROLE MAPPING USER</h3>
 
                             <p></p>
                         </a>
@@ -140,82 +140,12 @@
                 </div>
                 <!--end col-md-4 -->
 
-                <!--begin col-md-4 -->
-                <div class="col-md-4">
 
-                    <div class="main-services">
-                        <a href="{{ route('tte.index') }}">
-                            <img src="{{ asset('admin-master/images/DS.png')}}" class="width-100" alt="pic">
 
-                            <h3>MANAJEMEN TTE</h3>
 
-                            <p></p>
-                        </a>
-                    </div>
-
-                </div>
-                <!--end col-md-4 -->
 
             </div>
-            <!--end row -->
-
-        </div>
-        <!--end container -->
-
-        <!--begin container -->
-        <div class="container">
-
-
-            <!--begin col-md-4 -->
-            <div class="col-md-4">
-
-                <div class="main-services">
-                    <a href="{{ route('template.index') }}">
-                        <img src="{{ asset('admin-master/images/dm.png')}}" class="width-100" alt="pic">
-
-                        <h3>MANAJEMEN SK</h3>
-
-                        <p></p>
-                    </a>
-                </div>
-
-            </div>
-            <!--end col-md-4 -->
-
-            <!--begin col-md-4 -->
-            <div class="col-md-4">
-
-                <div class="main-services">
-                    <a href="{{ route('pertek.index') }}">
-                        <img src="{{ asset('admin-master/images/SD.png')}}" class="width-100" alt="pic">
-
-                        <h3>MANAJEMEN PERTEK</h3>
-
-                        <p></p>
-                    </a>
-                </div>
-
-            </div>
-            <!--end col-md-4 -->
-
-            <!--begin col-md-4 -->
-            <div class="col-md-4">
-
-                <div class="main-services">
-                    <a href="http://metadata-siasn.bkn.go.id/">
-                        <img src="{{ asset('admin-master/images/MR.png')}}" class="width-100" alt="pic">
-
-                        <h3>METADATA REPOSITORY</h3>
-
-                        <p></p>
-                    </a>
-                </div>
-
-            </div>
-            <!--end col-md-4 -->
-
-        </div>
-        <!--end container -->
+            <!--end container -->
 
     </section>
     <!--end section-grey -->
