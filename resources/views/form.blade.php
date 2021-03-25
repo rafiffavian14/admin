@@ -297,74 +297,132 @@
                 </div>
 
                 <div class="modal-body">
-                    <ul class="nav nav-tabs">
-                        <li role="presentation"><a href="#home">Home</a></li>
-                        <li role="presentation"><a href="#profile">Profile</a></li>
-                        <li role="presentation"><a href="#messages">Messages</a></li>
-                    </ul>
+                    <div>
 
-                    <div class="tab-content">
-                        <div class="tab-pane" id="home">Selamat datang</div>
-                        <!-- Untuk Tab pertama berikan div class=”active” agar pertama kali halaman di load content langsung active-->
-                        <div class="tab-pane active" id="profile">Profil saya</div>
-                        <div class="tab-pane" id="messages">Sangat Mudah membuat Tap dengan Bootstrap</div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab"
+                                    data-toggle="tab">Details</a></li>
+                            <li role="presentation"><a href="#mapping" aria-controls="mapping" role="tab"
+                                    data-toggle="tab">Role Mapping</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="detail">
+                                <div style="padding-top:50px">
+                                    <input type="hidden" id="id" name="id">
+                                    <div class="form-group">
+                                        <label for="id" class="col-md-3 control-label">ID</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="id" name="id" class="form-control" disabled>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="username" class="col-md-3 control-label">Username</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="username" name="username" class="form-control"
+                                                disabled>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email" class="col-md-3 control-label">Email</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="email" name="email" class="form-control" required>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="first-name" class="col-md-3 control-label">First Name</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="first-name" name="first-name" class="form-control"
+                                                required>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="last-name" name="last-name" class="form-control"
+                                                required>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="last-name" name="last-name" class="form-control"
+                                                required>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="user-enable" class="col-md-3 control-label">User Enable</label>
+                                        <div class="col-md-6">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                checked>
+                                            <span class="help-block with-errors"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="mapping">
+                                <div style="padding-top:50px">
+                                    <input type="hidden" id="id" name="id">
+                                    <div class="form-group">
+                                        <label for="user-enable" class="col-md-2 control-label">Realm Role</label>
+                                        <div class="col-md-3">
+                                            <label for="exampleFormControlSelect2">Available Role</label>
+                                            <select multiple class="form-control" id="exampleFormControlSelect2">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                            <button type="button" class="btn btn-default">Add
+                                                Selected>></button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleFormControlSelect2">Assigned Role</label>
+                                            <select multiple class="form-control" id="exampleFormControlSelect2">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                            <button type="button" class="btn btn-default">Remove
+                                                Selected</button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleFormControlSelect2">Effectived Role</label>
+                                            <select multiple class="form-control" id="exampleFormControlSelect2"
+                                                disabled>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
 
-                    <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                        <label for="id" class="col-md-3 control-label">ID</label>
-                        <div class="col-md-6">
-                            <input type="text" id="id" name="id" class="form-control" disabled>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="username" class="col-md-3 control-label">Username</label>
-                        <div class="col-md-6">
-                            <input type="text" id="username" name="username" class="form-control" disabled>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="col-md-3 control-label">Email</label>
-                        <div class="col-md-6">
-                            <input type="text" id="email" name="email" class="form-control" required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="first-name" class="col-md-3 control-label">First Name</label>
-                        <div class="col-md-6">
-                            <input type="text" id="first-name" name="first-name" class="form-control" required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
-                        <div class="col-md-6">
-                            <input type="text" id="last-name" name="last-name" class="form-control" required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="last-name" class="col-md-3 control-label">Last Name</label>
-                        <div class="col-md-6">
-                            <input type="text" id="last-name" name="last-name" class="form-control" required>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="user-enable" class="col-md-3 control-label">User Enable</label>
-                        <div class="col-md-6">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -969,3 +1027,7 @@
         </div>
     </div>
 </div>
+
+
+<script src="{{ asset('assets/jquery/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
