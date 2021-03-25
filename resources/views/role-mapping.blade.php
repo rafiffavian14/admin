@@ -15,7 +15,7 @@
                     <table id="tte-table" class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>NIP</th>
                                 <th>Username</th>
                                 <th>email</th>
                                 <th>First Name</th>
