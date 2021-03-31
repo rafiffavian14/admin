@@ -54,103 +54,69 @@
       function addForm() {
             save_method = "add";
             $('input[name=_method]').val('POST');
-            $('#action').val("Add");
             $('#modal-form').modal('show');
             $('#modal-form form')[0].reset();
-            $('#modal-form #form_result').empty();
-            $('#modal-form #store_image').empty();
             $('.modal-title').text('Add Manajemen Layanan');
           }
 
 
 
-         $('#modal-form form').on('submit', function(event) {
-                event.preventDefault();
-                if($('#action').val() == 'Add')
-                {
-                  $.ajax({
-                    url:"{{ route('layanan.store') }}",
-                    method: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType:"json",
-                    success: function(data) {
-                        var html = '';
-                        if(data.errors)
-                        {
-                          html = '<div class="alert alert-danger">';
-                          for(var count = 0; count < data.errors.length; count++)
-                          {
-                            html += '<p>' + data.errors[count] + '</p>';
-                          }
-                            html += '</div>';
-                        }
-                        if(data.success)
-                        {
-                          html = '<div class="alert alert-success">' + data.success + '</div>';
-                          $('#modal-form form')[0].reset();
-                          $('#layanan-table').DataTable().ajax.reload();
-                        }
-                        $('#form_result').html(html);
-                    }
-                  });
-                }
+          $(function(){
+            $('#modal-form form').validator().on('submit', function(e) {
+              if(!e.isDefaultPrevented()){
+                var id = $('#id').val();
+                if (save_method == 'add') url = "{{ url('manajemen-layanan/store') }}";
+                else url = "{{ url('manajemen-layanan') . '/' }}" + id;
 
-                if($('#action').val() == "Edit")
-                {
-                  $.ajax({
-                    url: "{{ route('layanan.update') }}",
-                    method: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: "json",
-                    success: function(data) {
-                        var html= '';
-                        if(data.errors)
-                        {
-                          html = '<div class="alert alert-danger">';
-                          for(var count = 0; count < data.errors.length; count++)
-                          {
-                            html += '<p>' + data.errors[count] + '</p>';
-                          }
-                          html += '</div>';
-                        }
-                        if(data.success)
-                        {
-                          html = '<div class="alert alert-success">' + data.success + '</div>';
-                          $('#modal-form form')[0].reset();
-                          $('#store_image').html('');
-                          $('#layanan-table').DataTable().ajax.reload();
-                        }
-                        $('#form_result').html(html);
-                    }
-                  });
-                }
+                $.ajax({
+                  url : url,
+                  type: 'POST',
+                  // data: $('#modal-form form').serialize(),
+                  data : new FormData($('#modal-form form')[0]),
+                  contentType: false,
+                  processData: false,
+                  success: function ($data) {
+                    $('#modal-form').modal('hide');
+                    table.ajax.reload();
+                    swal({
+                      title: 'Success!',
+                      text: 'Data has been Created!',
+                      type: 'success',
+                      timer: '1500'
+                    })
+                  },
+                  error: function () {
+                    swal({
+                        title: 'Oops...',
+                        text: 'Something Went Wrong!',
+                        type: 'error',
+                        timer: '1500'
+                    })
+                  }
+                });
 
-                
-    });
+                return false;
+              }
+            });
 
-        $(document).on('click', '.edit', function() {
-            var id = $(this).attr('id');
-            $('#form_result').html('');
-            $('#modal-form #store_image').empty();
+          });
+
+          function editForm(id) {
+            save_method = 'edit';
+            
+            $('input[name=_method]').val('PATCH');
             $('#modal-form form')[0].reset();
             $.ajax({
               url: "{{ url('manajemen-layanan') }}" + '/' + id + "/edit",
+              type: "GET",
               dataType: "JSON",
-              success: function (html) {
+              success: function (data) {
                   $('#modal-form').modal('show');
                   $('.modal-title').text('Edit Data');
-                  $('#hidden_id').val(html.id);
-                  $('#daftar_layanan').val(html.daftar_layanan);
-                  $('#prosedur').val(html.prosedur);
-                  $('#store_image').html("<img src={{ URL::to('/') }}/upload/photo/" + html.photo + " width='70' class='img-thumbnail' />");
-                  $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.photo+"' />");
-                  $('#action').val("Edit");
+
+                  $('#id').val(data.id);
+                  $('#daftar_layanan').val(data.daftar_layanan);
+                  $('#prosedur').val(data.prosedur);
               },
 
               error : function () {
@@ -158,7 +124,7 @@
               }
 
             });
-        });
+        }
 
          function showForm(id) {
             save_method = 'show';
@@ -176,7 +142,7 @@
                   $('#modal-form-detail form #id').val(data.id).attr('disabled', 'true');
                   $('#modal-form-detail form #daftar_layanan').val(data.daftar_layanan).attr('disabled', 'true');
                   $('#modal-form-detail form #prosedur').val(data.prosedur).attr('disabled', 'true');
-                  $('#modal-form-detail form #photo').html("<img src={{ URL::to('/') }}/upload/photo/" + data.photo + " width='70' class='img-thumbnail' />");
+                  $('#modal-form-detail form #photo').attr('src', data.photo);
                   
 
                   

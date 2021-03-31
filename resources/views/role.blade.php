@@ -19,7 +19,6 @@
                             <tr>
                                 <th width="30">No</th>
                                 <th>Role Name</th>
-                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,18 +43,14 @@
 var table = $('#role-table').DataTable({
     processing: true,
     serverSide: true,
-    ajax: "{{ route('api.tte') }}",
+    ajax: "{{ route('api.role') }}",
     columns: [{
             data: 'DT_RowIndex',
             name: 'id'
         },
         {
-            data: 'posisi',
-            name: 'posisi'
-        },
-        {
-            data: 'spesimen',
-            name: 'spesimen'
+            data: 'name',
+            name: 'name'
         },
         {
             data: 'action',
@@ -116,31 +111,6 @@ $(function() {
     });
 
 });
-
-function editForm(id) {
-    save_method = 'edit';
-
-    $('input[name=_method]').val('PATCH');
-    $('#modal-form-role form')[0].reset();
-    $.ajax({
-        url: "{{ url('manajemen-tte') }}" + '/' + id + "/edit",
-        type: "GET",
-        dataType: "JSON",
-        success: function(data) {
-            $('#modal-form-role-edit').modal('show');
-            $('.modal-title').text('Edit Data');
-
-            $('#id').val(data.id);
-            $('#posisi').val(data.posisi);
-            $('#spesimen').val(data.spesimen);
-        },
-
-        error: function() {
-            alert("Nothing Data");
-        }
-
-    });
-}
 
 
 function deleteData(id) {

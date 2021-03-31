@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('manajemen-layanan/store', [MlayananController::class, 'store'])->name('layanan.store');
 
-    Route::patch('manajemen-layanan/{id}', [MlayananController::class, 'update'])->name('layanan.update');
+    Route::post('manajemen-layanan/update', [MlayananController::class, 'update'])->name('layanan.update');
 
     Route::get('manajemen-layanan/{id}/edit', [MlayananController::class, 'edit'])->name('layanan.edit');
 
@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('manajemen-tte/store', [MtteController::class, 'store'])->name('tte.store');
 
-    Route::patch('manajemen-tte/{id}/update', [MtteController::class, 'update'])->name('tte.update');
+    Route::post('manajemen-tte/update', [MtteController::class, 'update'])->name('tte.update');
 
     Route::get('manajemen-tte/{id}/edit', [MtteController::class, 'edit'])->name('tte.edit');
 
@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // Menu User Management
-    Route::get('user-management', [UManagementController::class, 'index'])->name('user.index');
+    Route::get('user-management/', [UManagementController::class, 'index'])->name('user.index');
 
     
     Route::get('role', [RoleController::class, 'index'])->name('role.index');
@@ -106,6 +106,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('role/{id}/edit', [RoleController::class, 'edit'])->name('role.edit');
 
     Route::delete('role/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
+
+    Route::get('api/role', [RoleController::class, 'apiRole'])->name('api.role');
     
 
     Route::get('role-mapping', [RoleMController::class, 'index'])->name('mapping.index');

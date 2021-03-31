@@ -113,6 +113,119 @@
           // });
 
 
+          
+            function editForm(id) {
+            
+            var id = id;
+            
+            // $('input[name=_method]').val('PATCH');
+            $('#modal-form-tte-edit form')[0].reset();
+            $.ajax({
+              url: "{{ url('manajemen-tte') }}" + '/' + id + "/edit",
+              type: "GET",
+              dataType: "JSON",
+              success: function (data) {
+                  $('#modal-form-tte-edit').modal('show');
+                  $('.modal-title').text('Edit Data');
+
+                  $('#modal-form-tte-edit form #id').val(data.id);
+                  $('#modal-form-tte-edit form #posisi').val(data.posisi);
+                  $('#modal-form-tte-edit form #spesimen').val(data.spesimen);
+                  $('#modal-form-tte-edit form #nik').val(data.nik);
+                  $('#modal-form-tte-edit form #nama').val(data.nama);
+                  $('#modal-form-tte-edit form #nip').val(data.nip);
+
+                if(data.paraf_pi == 1){
+
+                  $('#modal-form-tte-edit form #paraf_pi').prop('checked', true).val(data.paraf_pi);
+                }  else {
+
+                  $('#modal-form-tte-edit form #paraf_pi').prop('checked', false).val(data.paraf_pi);
+                }
+
+                if(data.paraf_kp == 1){
+
+                  $('#modal-form-tte-edit form #paraf_kp').prop('checked', true).val(data.paraf_kp);
+                }  else {
+
+                  $('#modal-form-tte-edit form #paraf_kp').prop('checked', false).val(data.paraf_kp);
+                }
+
+                if(data.paraf_peremajaan == 1){
+
+                  $('#modal-form-tte-edit form #paraf_peremajaan').prop('checked', true).val(data.paraf_peremajaan);
+                }  else {
+
+                  $('#modal-form-tte-edit form #paraf_peremajaan').prop('checked', false).val(data.paraf_peremajaan);
+                }
+
+                if(data.ttd_pi == 1){
+
+                  $('#modal-form-tte-edit form #ttd_pi').prop('checked', true).val(data.ttd_pi);
+                }  else {
+
+                  $('#modal-form-tte-edit form #ttd_pi').prop('checked', false).val(data.ttd_pi);
+                }
+
+                if(data.ttd_kp == 1){
+
+                  $('#modal-form-tte-edit form #ttd_kp').prop('checked', true).val(data.ttd_kp);
+                }  else {
+
+                  $('#modal-form-tte-edit form #ttd_kp').prop('checked', false).val(data.ttd_kp);
+                }
+
+                if(data.ttd_peremajaan == 1){
+
+                  $('#modal-form-tte-edit form #ttd_peremajaan').prop('checked', true).val(data.ttd_peremajaan);
+                }  else {
+
+                  $('#modal-form-tte-edit form #ttd_peremajaan').prop('checked', false).val(data.ttd_peremajaan);
+                }
+
+
+
+              },
+
+              error : function () {
+                alert("Nothing Data");
+              }
+
+            });
+        }
+
+        <script type="text/javascript">
+           
+
+          $('#modal-form-tte-edit form').on('submit', function(e) {
+              
+              e.preventDefault();
+
+              var id = $('#modal-form-tte-edit form #id').val();
+
+              $.ajax({
+
+                  type : "PATCH",
+                  url  : "{{ url('manajemen-tte/2/update') }}",
+                  data : $('#modal-form-tte-edit form').serialize(),
+                  success : function ($data) {
+                      console.log($data);
+                      $('#modal-form-tte-edit').modal('hide');
+                      alert("Data Updated");
+                      location.reload();
+                  },
+                  error: function (error) {
+                    console.log(error);
+                  } 
+
+              });
+          });
+      
+   
+
+  </script>
+
+
 
           function editForm(id) {
             save_method = "edit";

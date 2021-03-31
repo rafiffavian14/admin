@@ -61,82 +61,155 @@
           });
   </script>
 
-
   <script type="text/javascript">
-      
-     
-          
-            function editForm(id) {
-            
-            var id = id;
-            
-            // $('input[name=_method]').val('PATCH');
-            $('#modal-form-tte-edit form')[0].reset();
+    
+    
+        function addForm() {
+
+            $('#modal-form-tte #action').val("Add");
+            $('#modal-form-tte').modal('show');
+             $('#modal-form-tte form')[0].reset();
+            $('#modal-form-tte #form_result').empty();
+            $('.modal-title').text('Add Manajemen TTE');
+
+          }
+
+          $('#modal-form-tte form').on('submit', function(event) {
+                event.preventDefault();
+                if($('#action').val() == 'Add')
+                {
+                  $.ajax({
+                    url:"{{ route('tte.store') }}",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType:"json",
+                    success: function(data) {
+                        var html = '';
+                        if(data.errors)
+                        {
+                          html = '<div class="alert alert-danger">';
+                          for(var count = 0; count < data.errors.length; count++)
+                          {
+                            html += '<p>' + data.errors[count] + '</p>';
+                          }
+                            html += '</div>';
+                        }
+                        if(data.success)
+                        {
+                          html = '<div class="alert alert-success">' + data.success + '</div>';
+                          $('#modal-form-tte form')[0].reset();
+                          $('#tte-table').DataTable().ajax.reload();
+                        }
+                        $('#modal-form-tte #form_result').html(html);
+                    }
+                  });
+                } 
+
+                if($('#action').val() == "Edit")
+                {
+                  $.ajax({
+                    url: "{{ route('tte.update') }}",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        var html= '';
+                        if(data.errors)
+                        {
+                          html = '<div class="alert alert-danger">';
+                          for(var count = 0; count < data.errors.length; count++)
+                          {
+                            html += '<p>' + data.errors[count] + '</p>';
+                          }
+                          html += '</div>';
+                        }
+                        if(data.success)
+                        {
+                          html = '<div class="alert alert-success">' + data.success + '</div>';
+                          $('#modal-form-tte form')[0].reset();
+                          $('#tte-table').DataTable().ajax.reload();
+                        }
+                        $('#modal-form-tte #form_result').html(html);
+                    }
+                  });
+                }   
+            });
+
+
+
+          $(document).on('click', '.edit', function() {
+            var id = $(this).attr('id');
+            $('#modal-form-tte #form_result').html('');
+            $('#modal-form-tte form')[0].reset();
             $.ajax({
               url: "{{ url('manajemen-tte') }}" + '/' + id + "/edit",
-              type: "GET",
               dataType: "JSON",
-              success: function (data) {
-                  $('#modal-form-tte-edit').modal('show');
+              success: function (html) {
+                  $('#modal-form-tte').modal('show');
                   $('.modal-title').text('Edit Data');
+                  $('#modal-form-tte #action').val("Edit");
+                  $('#modal-form-tte #hidden_id').val(html.id);
+                  $('#modal-form-tte form #id').val(html.id);
+                  $('#modal-form-tte form #posisi').val(html.posisi);
+                  $('#modal-form-tte form #spesimen').val(html.spesimen);
+                  $('#modal-form-tte form #nik').val(html.nik);
+                  $('#modal-form-tte form #nama').val(html.nama);
+                  $('#modal-form-tte form #nip').val(html.nip);
 
-                  $('#modal-form-tte-edit form #id').val(data.id);
-                  $('#modal-form-tte-edit form #posisi').val(data.posisi);
-                  $('#modal-form-tte-edit form #spesimen').val(data.spesimen);
-                  $('#modal-form-tte-edit form #nik').val(data.nik);
-                  $('#modal-form-tte-edit form #nama').val(data.nama);
-                  $('#modal-form-tte-edit form #nip').val(data.nip);
+                if(html.paraf_pi == 1){
 
-                if(data.paraf_pi == 1){
-
-                  $('#modal-form-tte-edit form #paraf_pi').prop('checked', true).val(data.paraf_pi);
+                  $('#modal-form-tte form #paraf_pi').prop('checked', true).val(html.paraf_pi);
                 }  else {
 
-                  $('#modal-form-tte-edit form #paraf_pi').prop('checked', false).val(data.paraf_pi);
+                  $('#modal-form-tte form #paraf_pi').prop('checked', false).val(html.paraf_pi);
                 }
 
-                if(data.paraf_kp == 1){
+                if(html.paraf_kp == 1){
 
-                  $('#modal-form-tte-edit form #paraf_kp').prop('checked', true).val(data.paraf_kp);
+                  $('#modal-form-tte form #paraf_kp').prop('checked', true).val(html.paraf_kp);
                 }  else {
 
-                  $('#modal-form-tte-edit form #paraf_kp').prop('checked', false).val(data.paraf_kp);
+                  $('#modal-form-tte form #paraf_kp').prop('checked', false).val(html.paraf_kp);
                 }
 
-                if(data.paraf_peremajaan == 1){
+                if(html.paraf_peremajaan == 1){
 
-                  $('#modal-form-tte-edit form #paraf_peremajaan').prop('checked', true).val(data.paraf_peremajaan);
+                  $('#modal-form-tte form #paraf_peremajaan').prop('checked', true).val(html.paraf_peremajaan);
                 }  else {
 
-                  $('#modal-form-tte-edit form #paraf_peremajaan').prop('checked', false).val(data.paraf_peremajaan);
+                  $('#modal-form-tte form #paraf_peremajaan').prop('checked', false).val(html.paraf_peremajaan);
                 }
 
-                if(data.ttd_pi == 1){
+                if(html.ttd_pi == 1){
 
-                  $('#modal-form-tte-edit form #ttd_pi').prop('checked', true).val(data.ttd_pi);
+                  $('#modal-form-tte form #ttd_pi').prop('checked', true).val(html.ttd_pi);
                 }  else {
 
-                  $('#modal-form-tte-edit form #ttd_pi').prop('checked', false).val(data.ttd_pi);
+                  $('#modal-form-tte form #ttd_pi').prop('checked', false).val(html.ttd_pi);
                 }
 
-                if(data.ttd_kp == 1){
+                if(html.ttd_kp == 1){
 
-                  $('#modal-form-tte-edit form #ttd_kp').prop('checked', true).val(data.ttd_kp);
+                  $('#modal-form-tte form #ttd_kp').prop('checked', true).val(html.ttd_kp);
                 }  else {
 
-                  $('#modal-form-tte-edit form #ttd_kp').prop('checked', false).val(data.ttd_kp);
+                  $('#modal-form-tte form #ttd_kp').prop('checked', false).val(html.ttd_kp);
                 }
 
-                if(data.ttd_peremajaan == 1){
+                if(html.ttd_peremajaan == 1){
 
-                  $('#modal-form-tte-edit form #ttd_peremajaan').prop('checked', true).val(data.ttd_peremajaan);
+                  $('#modal-form-tte form #ttd_peremajaan').prop('checked', true).val(html.ttd_peremajaan);
                 }  else {
 
-                  $('#modal-form-tte-edit form #ttd_peremajaan').prop('checked', false).val(data.ttd_peremajaan);
+                  $('#modal-form-tte form #ttd_peremajaan').prop('checked', false).val(html.ttd_peremajaan);
                 }
-
-
-
+                  $('#action').val("Edit");
               },
 
               error : function () {
@@ -144,94 +217,13 @@
               }
 
             });
-        } 
-     
-      
-      
-
-          $('#modal-form-tte-edit form').on('submit', function(e) {
-              
-              e.preventDefault();
-
-              var id = $('#modal-form-tte-edit form #id').val();
-
-              $.ajax({
-
-                  type : "PATCH",
-                  url  : "{{ url('manajemen-tte/2/update') }}",
-                  data : $('#modal-form-tte-edit form').serialize(),
-                  success : function ($data) {
-                      console.log($data);
-                      $('#modal-form-tte-edit').modal('hide');
-                      alert("Data Updated");
-                      location.reload();
-                  },
-                  error: function (error) {
-                    console.log(error);
-                  } 
-
-              });
-          });
-      
-   
-
-  </script>
-
-  <script type="text/javascript">
-    
-    
-        function addForm() {
-
-            save_method = "add";
-            $('#modal-form-tte').modal('show');
-            $('#form-tte')[0].reset();
-            $('.modal-title').text('Add Manajemen TTE');
-          }
+        });
 
     
 
   </script>
 
-  <script type="text/javascript">
-    
-      $(document).ready(function(){
-          
-          $('#form-tte').on('submit', function(e){
-              e.preventDefault();
 
-              $.ajax({
-
-                  type: "POST",
-                  url: "{{route('tte.store')}}",
-                  data: $('#form-tte').serialize(),
-                  success: function (response) {
-                      console.log(response)
-                      $('#modal-form-tte').modal('hide')
-                      table.ajax.reload();
-                      swal({
-                        title: 'Success!',
-                        text: 'Data has been Created!',
-                        type: 'success',
-                        timer: '1500'
-                      })
-                  },
-
-                  error: function (error) {
-                      // console.log(error)
-                      // alert("Data Not Saved");
-                      swal({
-                        title: 'Oops...',
-                        text: 'Something Went Wrong!',
-                        type: 'error',
-                        timer: '1500'
-                    })
-                  }
-
-              });
-          });
-      });
-
-  </script>
 
   <script type="text/javascript">
       
